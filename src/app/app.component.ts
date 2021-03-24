@@ -85,9 +85,13 @@ export class AppComponent implements OnInit {
       this.btnStart$.pipe(mapTo(true)),
       this.btnPause$.pipe(mapTo(false)),
     ).pipe(
+      // 1. Start, pause the counter. Then restart the counter with 0 (+)
+
       // ok so if 'start' clicked returning an interval, else returning 'NEVER'
       // (a never imitting/competing observable)
       switchMap(isTicking => isTicking ? interval(this.initialTickSpeed) : NEVER),
+
+      // 2. Start it again from paused number (++)
 
       // wrong solution: create a variable, this is wrong because
       // scan is like reduce, only it imitting the 'total' on every event
