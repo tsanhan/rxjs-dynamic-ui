@@ -89,10 +89,7 @@ export class AppComponent implements OnInit {
       // (a never imitting/competing observable)
       switchMap(isTicking => isTicking ? interval(this.initialTickSpeed) : NEVER),
 
-      // wrong solution: create a variable, this is wrong because
-      // scan is like reduce, only it imitting the 'total' on every event
-      // it caching the last 'total' so it's restored on the next event
-      scan((total, cur) => ++total)
+
     ).subscribe(num => {
       this.renderCounterValue(num);
     });
