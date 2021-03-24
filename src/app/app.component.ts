@@ -1,5 +1,5 @@
-import { fromEvent, merge, Observable } from 'rxjs';
-import { map, mapTo, shareReplay, startWith, withLatestFrom } from 'rxjs/operators';
+import { fromEvent, interval, merge, NEVER, Observable } from 'rxjs';
+import { map, mapTo, scan, shareReplay, startWith, switchMap, withLatestFrom } from 'rxjs/operators';
 
 import { Component, Directive, ElementRef, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActionNames } from './enums';
@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
 
 
   public initialSetTo: number = 10;
-  public initialTickSpeed: number = 500;
+  public initialTickSpeed: number = 200;
   public initialCountDiff: number = 1;
 
 
@@ -81,14 +81,21 @@ export class AppComponent implements OnInit {
       .pipe(withLatestFrom(this.inputSetTo$, (_, i$) => i$));
 
     merge(
-      this.btnStart$.pipe(mapTo(1)),
-      this.btnPause$.pipe(mapTo(0)),
+      // for the isTicking value
+      this.btnStart$.pipe(mapTo(true)),
+      this.btnPause$.pipe(mapTo(false)),
+    ).pipe(
+      // ok so if 'start' clicked returning an interval, else returning 'NEVER'
+      // (a never imitting/competing observable)
+      switchMap(isTicking => isTicking ? interval(this.initialTickSpeed) : NEVER),
+
+      // wrong solution: create a variable, this is wrong because
+      // scan is like reduce, only it imitting the 'total' on every event
+      // it caching the last 'total' so it's restored on the next event
+      scan((total, cur) => ++total)
     ).subscribe(num => {
-
       this.renderCounterValue(num);
-
-    }
-    )
+    });
 
   }
 
@@ -109,9 +116,9 @@ export class AppComponent implements OnInit {
     this.myContainer.clear();
     count.toString()
       .split('')
-      .forEach(($implicit, i, {length}) => {
+      .forEach(($implicit, i, { length }) => {
         this.myContainer.createEmbeddedView(this.digitTemplate, { $implicit });
-        if(i < (length -1)){
+        if (i < (length - 1)) {
           this.myContainer.createEmbeddedView(this.countDiv);
         }
       })
