@@ -97,6 +97,21 @@ export class AppComponent implements OnInit {
       // scan is like reduce, only it imitting the 'total' on every event
       // it caching the last 'total' so it's restored on the next event
       scan((total, cur) => ++total)
+
+
+      // 3. If Set to button is clicked set counter value to input value while counting (+++)
+
+      // reactive micro architecture: groups
+      // 1. constants: static data (i.e JSON files), consts (i.e interval rate), UIs (i.e ElemRefs)
+      // 2. base observables: purest observables
+      //  2.1. source observables:  like btn click observable
+      //  2.2. state observables: the state like the number of the counter
+      //  2.3. intermediate observables: are 2.1, 2.2 or a combinations of both (like a button that initialize something else i.e the btnSetTo$)
+      // 3. side effects:
+      //  3.1. UI input: update to the view (render view functions) 
+      // 4. subscriptions:
+      // 5. helpers:
+      // 6. custom operators:
     ).subscribe(num => {
       this.renderCounterValue(num);
     });
