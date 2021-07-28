@@ -5,15 +5,6 @@ import { Component, Directive, ElementRef, Input, OnInit, TemplateRef, ViewChild
 import { ActionNames } from './enums';
 
 
-// EXERCISE DESCRIPTION ==============================
-
-/**
- * Use `ConterStateKeys` for property names.
- * Explort the counterUI API by typing `counterUI.` somewhere. ;)
- */
-
-// ==================================================================
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
