@@ -1,27 +1,10 @@
-# AngularInheritance
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+ * Implement all features of the counter:
+ * 1. Start, pause the counter. Then restart the counter with 0 (+)
+ * 2. Start it again from paused number (++)
+ * 3. If Set to button is clicked set counter value to input value while counting (+++)
+ * 4. Reset to initial state if reset button is clicked (+)
+ * 5. If count up button is clicked count up, if count down button is clicked count down  (+)
+ * 6. Change interval if input tickSpeed input changes (++)
+ * 7. Change count up if input countDiff changes (++)
+ * 8. Take care of rendering execution and other performance optimisations as well as refactoring (+)
