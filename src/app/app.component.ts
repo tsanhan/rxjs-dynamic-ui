@@ -5,24 +5,6 @@ import { Component, Directive, ElementRef, Input, OnInit, TemplateRef, ViewChild
 import { ActionNames } from './enums';
 
 
-// EXERCISE DESCRIPTION ==============================
-
-/**
- * Use `ConterStateKeys` for property names.
- * Explort the counterUI API by typing `counterUI.` somewhere. ;)
- *
- * Implement all features of the counter:
- * 1. Start, pause the counter. Then restart the counter with 0 (+)
- * 2. Start it again from paused number (++)
- * 3. If Set to button is clicked set counter value to input value while counting (+++)
- * 4. Reset to initial state if reset button is clicked (+)
- * 5. If count up button is clicked count up, if count down button is clicked count down  (+)
- * 6. Change interval if input tickSpeed input changes (++)
- * 7. Change count up if input countDiff changes (++)
- * 8. Take care of rendering execution and other performance optimisations as well as refactoring (+)
- */
-
-// ==================================================================
 
 @Component({
   selector: 'app-root',
@@ -108,7 +90,7 @@ export class AppComponent implements OnInit {
       //  2.2. state observables: the state like the number of the counter
       //  2.3. intermediate observables: are 2.1, 2.2 or a combinations of both (like a button that initialize something else i.e the btnSetTo$)
       // 3. side effects:
-      //  3.1. UI input: update to the view (render view functions) 
+      //  3.1. UI input: update to the view (render view functions)
       // 4. subscriptions:
       // 5. helpers:
       // 6. custom operators:
